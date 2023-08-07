@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap");
+:root {
+  --text: #000000;
+  --background: #fcfdfd;
+  --primary: #4d4f99;
+  --secondary: #e5d8cc;
+  --accent: #687e4e;
+}
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+body,
+html {
+  background: var(--secondary);
+  color: var(--text);
+  font-family: "Montserrat", "Helvetica Neue";
+}
+hr {
+  border: var(--text) 2px solid;
+  opacity: 100% !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bebas Neue", "Courier New", monospace !important;
+  font-weight: bolder !important;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--text);
+}
+.container {
+  border: var(--text) 3px solid;
+}
+/* BUTTONS */
+.btn {
+  font-weight: bolder !important;
+  color: var(--text);
+  border: var(--text) 3px solid;
+}
+.btn:hover {
+  color: var(--background) !important;
+  background: var(--text) !important;
+  border: var(--primary) 3px solid !important;
+}
+.btn svg path {
+  fill: var(--background);
+}
+.btn-dark {
+  color: var(--background) !important;
+  background: var(--text) !important;
+}
+.btn-primary {
+  background: var(--primary) !important;
+  color: var(--background) !important;
+}
+.btnb-primary svg path {
+  fill: var(--background);
+}
+.btn-secondary {
+  background: var(--secondary) !important;
+}
+.btn-accent {
+  background: var(--accent) !important;
+  color: var(--background) !important;
+}
+
+/* END BUTTONS */
+
+/* BACKGROUNDS */
+.bg-light {
+  background: var(--background) !important;
+}
+.bg-primary {
+  background: var(--primary) !important;
+  color: var(--background);
+}
+.bg-secondary {
+  background: var(--secondary);
+}
+.bg-accent {
+  background: var(--accent);
+}
+.bg-dark {
+  background: var(--text) !important;
+  color: var(--background);
+  border-color: var(--primary);
+}
+/* END BACKGROUNDS */
+
+/* TEXT BEGINS */
+
+.text-light {
+  color: var(--background) !important;
+}
+.text-light svg path {
+  fill: var(--background) !important;
+}
+.text-dark {
+  color: var(--text) !important;
+}
+.text-dark svg path {
+  fill: var(--text) !important;
+}
+.text-primary {
+  color: var(--primary) !important;
+}
+.text-primary svg path {
+  fill: var(--primary) !important;
+}
+.text-secondary {
+  color: var(--secondary) !important;
+}
+.text-secondary svg path {
+  fill: var(--secondary) !important;
+}
+.text-accent {
+  color: var(--accent) !important;
+}
+.text-accent svg path {
+  fill: var(--accent) !important;
+}
+
+/* TEXT ENDS */
+
+/* ICONS SYSTEM */
+.icon {
+  display: inline-flex;
+  align-self: center;
+}
+
+.icon svg,
+.icon img {
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+}
+
+.icon.baseline svg,
+.icon img {
+  top: 0.125em;
+  position: relative;
+}
+/* END ICONS SYSTEM */
