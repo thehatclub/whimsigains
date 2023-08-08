@@ -1,10 +1,14 @@
 <script lang="ts">
   import type { PageData } from "./$types";
-  import type { MealsData } from "$lib";
+
   export let data: PageData;
 
-  const mealsData: MealsData = data.meals as MealsData;
-  const mealTimes = Object.keys(mealsData) as (keyof MealsData)[];
+  // import type { PageData } from "./$types";
+
+  // export let data: PageData;
+
+  async function addMeal(event: Event) {}
+  async function removeMeal(event: Event) {}
 </script>
 
 <main>
@@ -25,45 +29,40 @@
         </div>
         Meals
       </h1>
-
-      <a href="/" class="btn btn-dark">Back</a>
+      <a href="/meals" class="btn btn-dark">Back</a>
     </div>
-    <h2 class="text-center">{data.date}</h2>
     <hr />
 
-    <div class="row gap-3 justify-content-center">
-      {#each mealTimes as mealTime}
-        <div class="card col-lg-5">
-          <div class="card-header text-center">
-            {mealTime}
-          </div>
-          <div class="card-body">
-            {#if mealsData[mealTime].some((meal) => meal.date === data.date)}
-              <ul class="list-group gap-2">
-                {#each mealsData[mealTime] as meal}
-                  {#if meal.date === data.date}
-                    <li
-                      class="list-group-item rounded d-flex justify-content-between align-items-center bg-primary"
-                    >
-                      {meal.name}
-                      <span class="badge bg-accent rounded-pill">
-                        {meal.calories} Cal
-                      </span>
-                    </li>
-                  {/if}
-                {/each}
-              </ul>
-            {:else}
-              <h5 class="card-title">
-                Looks like you haven't logged your {mealTime} yet
-              </h5>
-            {/if}
-          </div>
-          <div class="card-footer text-center">
-            <a href="/meals/form" class="btn btn-light">+ Log now</a>
-          </div>
+    <div class="text-center">
+      <form action="/logging" method="post" class="text-start">
+        <div class="mb-3">
+          <label for="date" class="form-label">Enter Meal Date:</label>
+          <input type="date" name="date" class="form-control" required />
         </div>
-      {/each}
+        <div class="mb-3">
+          <label for="name" class="form-label">Enter Meal Name:</label>
+          <input type="text" name="name" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="calories" class="form-label">Enter Meal Calories:</label>
+          <input type="number" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="meal_time" class="form-label"
+            >Choose your Meal of the day:</label
+          >
+          <select name="meal_time" class="form-control" required>
+            <option></option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snack">Snack</option>
+          </select>
+        </div>
+        <div class="mb-3 text-center">
+          <button type="submit" class="btn btn-lg btn-light">Log Meal</button>
+        </div>
+      </form>
     </div>
   </div>
 </main>

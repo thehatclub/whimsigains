@@ -17,9 +17,29 @@
 }
 body,
 html {
-  background: var(--secondary);
-  color: var(--text);
+  height: 100%;
+  background: var(--secondary) !important;
+  color: var(--text) !important;
   font-family: "Montserrat", "Helvetica Neue";
+}
+.card,
+.card-header,
+.card-body,
+.card-footer {
+  background: var(--background) !important;
+  color: var(--text);
+}
+.card {
+  border: var(--text) 2px solid;
+}
+.card-header {
+  border-bottom: var(--text) 1px solid;
+}
+.card-footer {
+  border-top: var(--text) 1px solid;
+}
+.list-group-item {
+  border: var(--text) 2px solid;
 }
 hr {
   border: var(--text) 2px solid;
@@ -47,47 +67,67 @@ a:active {
   border: var(--text) 3px solid;
 }
 /* BUTTONS */
+
+/* MAIN BUTTON STYLES */
 .btn {
   font-weight: bolder !important;
   color: var(--text);
   border: var(--text) 3px solid;
 }
-.btn:hover {
-  color: var(--background) !important;
-  border: var(--text) 3px solid !important;
-}
 .btn svg path {
   fill: var(--background);
 }
+
+/* BUTTON COLOR PALLET */
+
 .btn-dark {
   color: var(--background) !important;
   background: var(--text) !important;
 }
-.btn-dark:hover {
-  background: rgba(var(--rgba-text), 0.8) !important;
+.btn-light {
+  color: var(--text) !important;
+  background: var(--background) !important;
 }
 .btn-primary {
   background: var(--primary) !important;
   color: var(--background) !important;
 }
-.btn-primary:hover {
-  background: rgba(var(--rgba-primary), 0.8) !important;
-}
-.btn-primary svg path {
-  fill: var(--background);
-}
 .btn-secondary {
   background: var(--secondary) !important;
-}
-.btn-secondary:hover {
-  background: rgba(var(--rgba-secondary), 0.8) !important;
 }
 .btn-accent {
   background: var(--accent) !important;
   color: var(--background) !important;
 }
+
+/* BUTTON HOVER SUDO CLASSES */
+.btn:hover {
+  color: var(--background) !important;
+  border: var(--text) 3px solid !important;
+}
+.btn-dark:hover {
+  background: rgba(var(--rgba-background), 0.8) !important;
+  color: var(--text) !important;
+}
+.btn-light:hover {
+  background: rgba(var(--rgba-text), 0.8) !important;
+}
+.btn-primary:hover {
+  background: rgba(var(--rgba-primary), 0.8) !important;
+}
+.btn-secondary:hover {
+  background: rgba(var(--rgba-secondary), 0.8) !important;
+}
 .btn-accent:hover {
   background: rgba(var(--rgba-accent), 0.8) !important;
+}
+
+/* BUTTON SVG SUDO STYLES */
+.btn-dark:hover svg path {
+  fill: var(--text);
+}
+.btn-light:hover svg path {
+  fill: var(--background);
 }
 
 /* END BUTTONS */
@@ -95,21 +135,23 @@ a:active {
 /* BACKGROUNDS */
 .bg-light {
   background: var(--background) !important;
+  color: var(--text);
 }
 .bg-primary {
   background: var(--primary) !important;
   color: var(--background);
 }
 .bg-secondary {
-  background: var(--secondary);
+  background: var(--secondary) !important;
+  color: var(--text);
 }
 .bg-accent {
-  background: var(--accent);
+  background: var(--accent) !important;
+  color: var(--background);
 }
 .bg-dark {
   background: var(--text) !important;
   color: var(--background);
-  border-color: var(--primary);
 }
 /* END BACKGROUNDS */
 

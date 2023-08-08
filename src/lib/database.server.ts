@@ -1,18 +1,57 @@
-type Meal = {
-    date: number,
-    name: string,
-    calories: number,
-    meal_time: string,
-}
-const meals: Meal[] = [
+import type { MealsData } from "$lib";
+
+let meals: MealsData = {
+  Breakfast: [
     {
-        date: Date.now(),
-        name: "steak",
-        calories: 500,
-        meal_time: 'breakfast',
-    }
-]
+      date: "2023-08-08",
+      name: "eggs",
+      calories: 200,
+    },
+    {
+      date: "2023-08-08",
+      name: "eggs",
+      calories: 200,
+    },
+    {
+      date: "2023-08-08",
+      name: "eggs",
+      calories: 200,
+    },
+    {
+      date: "2023-08-08",
+      name: "eggs",
+      calories: 200,
+    },
+    {
+      date: "2023-08-08",
+      name: "eggs",
+      calories: 200,
+    },
+  ],
+  Lunch: [
+    {
+      date: "2023-08-08",
+      name: "sandwich",
+      calories: 1000,
+    },
+  ],
+  Dinner: [
+    {
+      date: "2023-08-08",
+      name: "steak",
+      calories: 500,
+    },
+  ],
+  Snack: [
+    {
+      date: "2023-08-08",
+      name: "chips",
+      calories: 40,
+    },
+  ],
+};
+export let date = new Date(Date.now()).toISOString().split("T")[0];
 
 export function getMeals() {
-    return meals;
+  return meals;
 }
