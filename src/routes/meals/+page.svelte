@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
+  // import type { PageData } from "./$types";
 
-  export let data: PageData;
+  // export let data: PageData;
 </script>
 
 <main>
@@ -22,15 +22,40 @@
         </div>
         Meals
       </h1>
-
       <a href="/" class="btn btn-dark">Back</a>
     </div>
     <hr />
 
     <div class="text-center">
-      <pre>
-        {JSON.stringify(data, null, 2)}
-      </pre>
+      <form action="/logging" method="post" class="text-start">
+        <div class="mb-3">
+          <label for="date" class="form-label">Enter Meal Date:</label>
+          <input type="date" name="date" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Enter Meal Name:</label>
+          <input type="text" name="name" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="calories" class="form-label">Enter Meal Calories:</label>
+          <input type="number" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="meal_time" class="form-label"
+            >Choose your Meal of the day:</label
+          >
+          <select name="meal_time" class="form-control" required>
+            <option />
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snack">Snack</option>
+          </select>
+        </div>
+        <div class="mb-3 text-center">
+          <button type="submit" class="btn btn-lg btn-light">Log Meal</button>
+        </div>
+      </form>
     </div>
   </div>
 </main>

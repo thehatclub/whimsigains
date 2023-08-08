@@ -1,10 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap");
 :root {
-  --text: #000000;
-  --background: #fcfdfd;
-  --primary: #4d4f99;
-  --secondary: #e5d8cc;
-  --accent: #687e4e;
+  --text: rgb(0, 0, 0);
+  --background: rgb(252, 253, 253);
+  --primary: rgb(77, 79, 153);
+  --secondary: rgb(229, 216, 204);
+  --accent: rgb(104, 126, 78);
+  --rgba-text: 0, 0, 0;
+  --rgba-background: 252, 253, 253;
+  --rgba-primary: 77, 79, 153;
+  --rgba-secondary: 229, 216, 204;
+  --rgba-accent: 104, 126, 78;
 }
 ::selection {
   background: var(--accent);
@@ -29,11 +34,14 @@ h6 {
   font-family: "Bebas Neue", "Courier New", monospace !important;
   font-weight: bolder !important;
 }
+.form-control {
+  border: var(--text) 2px solid;
+}
 a:link,
 a:visited,
 a:hover,
 a:active {
-  color: var(--text);
+  color: var(--background);
 }
 .container {
   border: var(--text) 3px solid;
@@ -46,8 +54,7 @@ a:active {
 }
 .btn:hover {
   color: var(--background) !important;
-  background: var(--text) !important;
-  border: var(--primary) 3px solid !important;
+  border: var(--text) 3px solid !important;
 }
 .btn svg path {
   fill: var(--background);
@@ -56,19 +63,31 @@ a:active {
   color: var(--background) !important;
   background: var(--text) !important;
 }
+.btn-dark:hover {
+  background: rgba(var(--rgba-text), 0.8) !important;
+}
 .btn-primary {
   background: var(--primary) !important;
   color: var(--background) !important;
 }
-.btnb-primary svg path {
+.btn-primary:hover {
+  background: rgba(var(--rgba-primary), 0.8) !important;
+}
+.btn-primary svg path {
   fill: var(--background);
 }
 .btn-secondary {
   background: var(--secondary) !important;
 }
+.btn-secondary:hover {
+  background: rgba(var(--rgba-secondary), 0.8) !important;
+}
 .btn-accent {
   background: var(--accent) !important;
   color: var(--background) !important;
+}
+.btn-accent:hover {
+  background: rgba(var(--rgba-accent), 0.8) !important;
 }
 
 /* END BUTTONS */
