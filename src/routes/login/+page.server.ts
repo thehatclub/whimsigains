@@ -19,20 +19,16 @@ export const actions: Actions = {
       username: z.string().min(1).max(31).trim(),
       password: z.string().min(1).max(255).trim(),
     });
-    const username = formDataObj.username;
-    const password = formDataObj.password;
+    const username: string = formDataObj.username as string;
+    const password: string = formDataObj.password as string;
 
     try {
       loginSchema.parse(formDataObj);
       // find user by key
       // and validate password
-      const key = await auth.useKey(
-        "username",
-        username as string,
-        password as string
-      );
+      const key = await auth.useKey("username", username, password);
       const session = await auth.createSession({
-        userId: key.userId,
+        userId: key.userId.toLowerCase(),
         attributes: {},
       });
       locals.auth.setSession(session); // set session cookie
