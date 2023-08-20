@@ -1,7 +1,7 @@
 import { auth } from "$lib/server/lucia";
 import { fail, redirect } from "@sveltejs/kit";
 import { Prisma } from "@prisma/client";
-import { ZodError, string, z } from "zod";
+import { ZodError, z } from "zod";
 
 import type { PageServerLoad, Actions } from "./$types";
 
@@ -15,10 +15,21 @@ export const actions: Actions = {
   default: async ({ request, locals }) => {
     const formData = await request.formData();
     const formDataObj = Object.fromEntries(formData.entries());
-    const loginSchema = z.object({
-      username: z.string().min(4).max(31).trim(),
-      password: z.string().min(6).max(255).trim(),
-    });
+    const loginSchema = z
+      .object({
+        username: z.string().min(4).max(31).trim(),
+        password: z.string().min(6).max(255).trim(),
+        passwordConfirm: z.string().min(6).max(255).trim(),
+      })
+      .superRefine(({ passwordConfirm, password }, ctx) => {
+        if (passwordConfirm !== password) {
+          ctx.addIssue({
+            code: "custom",
+            message: "The passwords did not match",
+            path: ["passwordConfirm"],
+          });
+        }
+      });
     const username: string = formDataObj.username as string;
     const password: string = formDataObj.password as string;
 

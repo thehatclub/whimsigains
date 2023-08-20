@@ -34,7 +34,7 @@
             fill="#0F1729"></path>
         </svg>
       </div>
-      Sign up
+      Account Creation
     </h1>
     <form method="post" use:enhance class="text-start">
       <label for="username" class="form-label lead">Username</label>
@@ -46,6 +46,13 @@
       <input type="password" name="password" class="form-control" />
       {#if form?.error?.password}
         <p class="text-danger">{form?.error?.password[0]}</p>
+      {/if}
+      <label for="passwordConfirm" class="form-label lead mt-3"
+        >Re-Type Password</label
+      >
+      <input type="password" name="passwordConfirm" class="form-control" />
+      {#if form?.error?.passwordConfirm}
+        <p class="text-danger">{form?.error?.passwordConfirm[0]}</p>
       {/if}
       {#if form?.message}
         <p class="text-danger">{form.message}</p>
