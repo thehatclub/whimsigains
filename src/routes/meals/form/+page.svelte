@@ -1,16 +1,3 @@
-<script lang="ts">
-  import type { PageData } from "./$types";
-
-  export let data: PageData;
-
-  // import type { PageData } from "./$types";
-
-  // export let data: PageData;
-
-  async function addMeal(event: Event) {}
-  async function removeMeal(event: Event) {}
-</script>
-
 <main>
   <div class="container bg-primary rounded p-5 my-5">
     <div class="d-flex justify-content-between align-items-center text-light">

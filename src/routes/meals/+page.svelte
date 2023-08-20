@@ -1,12 +1,3 @@
-<script lang="ts">
-  import type { PageData } from "./$types";
-  import type { MealsData } from "$lib";
-  export let data: PageData;
-
-  const mealsData: MealsData = data.meals as MealsData;
-  const mealTimes = Object.keys(mealsData) as (keyof MealsData)[];
-</script>
-
 <main>
   <div class="container bg-primary rounded p-5 my-5">
     <div class="d-flex justify-content-between align-items-center text-light">
@@ -28,10 +19,10 @@
 
       <a href="/" class="btn btn-dark">Back</a>
     </div>
-    <h2 class="text-center">{data.date}</h2>
+    <!-- <h2 class="text-center">{data.date}</h2> -->
     <hr />
 
-    <div class="row gap-3 justify-content-center">
+    <!-- <div class="row gap-3 justify-content-center">
       {#each mealTimes as mealTime}
         <div class="card col-lg-5">
           <div class="card-header text-center">
@@ -64,6 +55,6 @@
           </div>
         </div>
       {/each}
-    </div>
+    </div> -->
   </div>
 </main>

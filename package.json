@@ -1,27 +1,33 @@
 {
-	"name": "whimsigains",
-	"version": "0.0.1",
-	"private": true,
-	"pnpm": {
-		"frozen-lockfile": false
-	},
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"push": "npm run build && git add . && git commit -m 'new' && git push origin main",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/adapter-netlify": "^2.0.8",
-		"@sveltejs/kit": "^1.20.4",
-		"svelte": "^4.0.5",
-		"svelte-check": "^3.4.3",
-		"tslib": "^2.4.1",
-		"typescript": "^5.0.0",
-		"vite": "^4.4.2"
-	},
-	"type": "module"
+  "name": "whimsigains",
+  "version": "0.0.1",
+  "private": true,
+  "pnpm": {
+    "frozen-lockfile": false
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "push": "npm run build && git add . && git commit -m 'new' && git push origin main",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/adapter-netlify": "^2.0.8",
+    "@sveltejs/kit": "^1.20.4",
+    "prisma": "^5.1.1",
+    "svelte": "^4.0.5",
+    "svelte-check": "^3.4.3",
+    "tslib": "^2.4.1",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.2"
+  },
+  "type": "module",
+  "dependencies": {
+    "@lucia-auth/adapter-prisma": "^3.0.1",
+    "@prisma/client": "^5.1.1",
+    "lucia": "^2.3.0"
+  }
 }
