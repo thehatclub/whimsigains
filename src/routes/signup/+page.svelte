@@ -40,12 +40,12 @@
       <label for="username" class="form-label lead">Username</label>
       <input name="username" class="form-control" />
       {#if form?.error?.username}
-        <span class="text-danger">{form?.error?.username[0]}</span>
+        <p class="text-danger">{form?.error?.username[0]}</p>
       {/if}
       <label for="password" class="form-label lead mt-3">Password</label>
       <input type="password" name="password" class="form-control" />
       {#if form?.error?.password}
-        <span class="text-danger">{form?.error?.password[0]}</span>
+        <p class="text-danger">{form?.error?.password[0]}</p>
       {/if}
       {#if form?.message}
         <p class="text-danger">{form.message}</p>

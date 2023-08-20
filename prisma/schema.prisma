@@ -14,7 +14,7 @@ datasource db {
 model User {
   id           String    @id @unique
   username     String    @unique
-  calorieGoal  Int
+  // calorieGoal  Int
   // workouts     Workout[]
   // meals        Meal[]
   auth_session Session[]
