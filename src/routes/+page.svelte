@@ -21,7 +21,7 @@
           Track all your workouts, meals, and progress all in one place
         </p>
         <div class="d-md-flex justify-content-md-end text-center">
-          <a href="/meals" class="btn btn-lg btn-primary m-1"
+          <a href="/protected/meals" class="btn btn-lg btn-primary m-1"
             ><div class="icon baseline">
               <svg
                 fill="#000"
@@ -36,7 +36,7 @@
             </div>
             MEALS</a
           >
-          <a href="/workout" class="btn btn-lg btn-accent m-1"
+          <a href="/protected/workout" class="btn btn-lg btn-accent m-1"
             ><div class="icon baseline">
               <svg
                 width="800px"
@@ -55,7 +55,7 @@
             </div>
             WORKOUTS</a
           >
-          <a href="/dashboard" class="btn btn-lg btn-dark m-1"
+          <a href="/protected/dashboard" class="btn btn-lg btn-dark m-1"
             ><div class="icon baseline">
               <svg
                 width="800px"

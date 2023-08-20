@@ -22,6 +22,7 @@ html {
   color: var(--text) !important;
   font-family: "Montserrat", "Helvetica Neue";
 }
+
 .card,
 .card-header,
 .card-body,
@@ -55,7 +56,11 @@ h6 {
   font-weight: bolder !important;
 }
 .form-control {
-  border: var(--text) 2px solid;
+  border: var(--text) 2px solid !important;
+}
+.form-control:focus {
+  border: var(--text) 2px solid !important;
+  box-shadow: none;
 }
 a:link,
 a:visited,
@@ -98,6 +103,9 @@ a:active {
 .btn-accent {
   background: var(--accent) !important;
   color: var(--background) !important;
+}
+.border-light {
+  border: var(--background) 3px solid !important;
 }
 
 /* BUTTON HOVER SUDO CLASSES */

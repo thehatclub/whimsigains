@@ -1,6 +1,7 @@
 import { auth } from "$lib/server/lucia";
 import { fail, redirect } from "@sveltejs/kit";
 import { Prisma } from "@prisma/client";
+import { ZodError, string, z } from "zod";
 
 import type { PageServerLoad, Actions } from "./$types";
 
@@ -13,32 +14,20 @@ export const load: PageServerLoad = async ({ locals }) => {
 export const actions: Actions = {
   default: async ({ request, locals }) => {
     const formData = await request.formData();
-    const username = formData.get("username");
-    const password = formData.get("password");
-    // basic check
-    if (
-      typeof username !== "string" ||
-      username.length < 4 ||
-      username.length > 31
-    ) {
-      return fail(400, {
-        message: "Invalid username",
-      });
-    }
-    if (
-      typeof password !== "string" ||
-      password.length < 6 ||
-      password.length > 255
-    ) {
-      return fail(400, {
-        message: "Invalid password",
-      });
-    }
+    const formDataObj = Object.fromEntries(formData.entries());
+    const loginSchema = z.object({
+      username: z.string().min(4).max(31).trim(),
+      password: z.string().min(6).max(255).trim(),
+    });
+    const username: string = formDataObj.username as string;
+    const password: string = formDataObj.password as string;
+
     try {
+      const result = loginSchema.parse(formDataObj);
       const user = await auth.createUser({
         key: {
           providerId: "username", // auth method
-          providerUserId: username.toLowerCase(), // unique id when using "username" auth method
+          providerUserId: username, // unique id when using "username" auth method
           password, // hashed by Lucia
         },
         attributes: {
@@ -51,6 +40,15 @@ export const actions: Actions = {
       });
       locals.auth.setSession(session); // set session cookie
     } catch (e: any) {
+      if (e instanceof ZodError) {
+        const { fieldErrors: error } = e.flatten();
+        const { password, ...rest } = formDataObj;
+
+        return fail(400, {
+          data: rest,
+          error,
+        });
+      }
       // check for unique constraint error in user table
       if (
         e instanceof Prisma.PrismaClientKnownRequestError &&
