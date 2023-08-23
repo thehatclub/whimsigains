@@ -2,6 +2,7 @@
   <div class="container p-5 my-5 bg-light rounded">
     <div class="row justify-content-center align-items-center">
       <div class="col-12 text-md-start text-sm-center">
+        <span class="badge bg-secondary">ALPHA 1.0</span>
         <h1 class="display-1">
           <div class="icon baseline">
             <svg
@@ -17,6 +18,7 @@
           </div>
           Whimsigains
         </h1>
+
         <p class="lead">
           Track all your workouts, meals, and progress all in one place
         </p>
