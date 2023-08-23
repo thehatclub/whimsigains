@@ -1,3 +1,15 @@
+<script lang="ts">
+  import { superForm } from "sveltekit-superforms/client";
+  import type { PageData } from "./$types";
+  import { page } from "$app/stores";
+
+  export let data: PageData;
+
+  const { form, errors, enhance, message } = superForm(data.form, {
+    taintedMessage: "Are you sure you want to leave?",
+  });
+</script>
+
 <main>
   <div class="container bg-primary rounded p-5 my-5">
     <div class="d-flex justify-content-between align-items-center text-light">
@@ -16,45 +28,85 @@
         </div>
         Meals
       </h1>
-
-      <a href="/" class="btn btn-dark">Back</a>
+      <a href="/protected" class="btn btn-lg btn-dark">Back</a>
     </div>
-    <!-- <h2 class="text-center">{data.date}</h2> -->
     <hr />
+    {#if $message}
+      <div
+        class="alert"
+        class:alert-success="{$page.status == 200}"
+        class:alert-danger="{$page.status >= 400}"
+        role="alert"
+      >
+        {$message}
+      </div>
+    {/if}
 
-    <!-- <div class="row gap-3 justify-content-center">
-      {#each mealTimes as mealTime}
-        <div class="card col-lg-5">
-          <div class="card-header text-center">
-            {mealTime}
-          </div>
-          <div class="card-body">
-            {#if mealsData[mealTime].some((meal) => meal.date === data.date)}
-              <ul class="list-group gap-2">
-                {#each mealsData[mealTime] as meal}
-                  {#if meal.date === data.date}
-                    <li
-                      class="list-group-item rounded d-flex justify-content-between align-items-center bg-primary"
-                    >
-                      {meal.name}
-                      <span class="badge bg-accent rounded-pill">
-                        {meal.calories} Cal
-                      </span>
-                    </li>
-                  {/if}
-                {/each}
-              </ul>
-            {:else}
-              <h5 class="card-title">
-                Looks like you haven't logged your {mealTime} yet
-              </h5>
-            {/if}
-          </div>
-          <div class="card-footer text-center">
-            <a href="/meals/form" class="btn btn-light">+ Log now</a>
-          </div>
+    <div class="text-center">
+      <form method="post" use:enhance class="text-start">
+        <div class="mb-3">
+          <label for="date" class="form-label">Enter Meal Date:</label>
+          <input
+            type="date"
+            name="date"
+            class="form-control"
+            bind:value="{$form.date}"
+          />
+          {#if $errors.date}
+            <small class="text-danger">{$errors.date}</small>
+            <br />
+          {/if}
         </div>
-      {/each}
-    </div> -->
+        <div class="mb-3">
+          <label for="name" class="form-label">Enter Meal Name:</label>
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            bind:value="{$form.name}"
+          />
+          {#if $errors.name}
+            <small class="text-danger">{$errors.name}</small>
+            <br />
+          {/if}
+        </div>
+        <div class="mb-3">
+          <label for="calories" class="form-label">Enter Meal Calories:</label>
+          <input
+            type="number"
+            name="calories"
+            class="form-control"
+            bind:value="{$form.calories}"
+          />
+          {#if $errors.calories}
+            <small class="text-danger">{$errors.calories}</small>
+            <br />
+          {/if}
+        </div>
+        <div class="mb-3">
+          <label for="meal_time" class="form-label"
+            >Choose your Meal of the day:</label
+          >
+          <select
+            name="meal_time"
+            class="form-control"
+            bind:value="{$form.meal_time}"
+          >
+            <option></option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snack">Snack</option>
+          </select>
+          {#if $errors.meal_time}
+            <small class="text-danger">{$errors.meal_time}</small>
+            <br />
+          {/if}
+        </div>
+        <div class="mb-3 text-center">
+          <input type="submit" class="btn btn-lg btn-light" />
+        </div>
+      </form>
+    </div>
   </div>
 </main>

@@ -4,16 +4,16 @@ import { z } from "zod";
 import { fail } from "@sveltejs/kit";
 import { client } from "$lib/server/lucia";
 
-const mealSchema = z.object({
+const workoutSchema = z.object({
   date: z.string().transform((str) => new Date(str)),
   name: z.string().min(1).max(255),
   calories: z.number().min(1).max(5000),
-  meal_time: z.enum(["breakfast", "lunch", "dinner", "snack"]),
+  weight: z.number().min(1).max(5000),
 });
-export type Meal = z.infer<typeof mealSchema>;
+export type Workout = z.infer<typeof workoutSchema>;
 
 export const load: PageServerLoad = async ({ locals, request }) => {
-  const form = await superValidate(request, mealSchema);
+  const form = await superValidate(request, workoutSchema);
   return {
     form,
   };
@@ -21,29 +21,29 @@ export const load: PageServerLoad = async ({ locals, request }) => {
 
 export const actions: Actions = {
   default: async ({ request, locals }) => {
-    const form = await superValidate(request, mealSchema);
+    const form = await superValidate(request, workoutSchema);
     if (!form.valid) {
       return fail(400, {
         form,
       });
     }
     try {
-      await addMeal(form.data, locals.user, form);
-      return message(form, "Meal successfully added!");
+      await addWorkout(form.data, locals.user, form);
+      return message(form, "Workout successfully added!");
     } catch (e) {
       return message(form, "Unknown server error: " + e, { status: 500 });
     }
   },
 };
 
-async function addMeal(formData: Meal, userId: any, form: any) {
+async function addWorkout(formData: Workout, userId: any, form: any) {
   try {
-    const newMeal = await client.meal.create({
+    const newWorkout = await client.workout.create({
       data: {
         date: formData.date,
         calories: formData.calories,
         name: formData.name,
-        time: formData.meal_time,
+        weight: formData.weight,
         userId: userId.userId,
       },
     });

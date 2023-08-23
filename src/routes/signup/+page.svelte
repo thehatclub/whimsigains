@@ -1,9 +1,12 @@
 <script lang="ts">
-  import { enhance } from "$app/forms";
+  import { superForm } from "sveltekit-superforms/client";
+  import type { PageData } from "./$types";
 
-  import type { ActionData } from "./$types";
+  export let data: PageData;
 
-  export let form: ActionData;
+  const { form, errors, enhance, message } = superForm(data.form, {
+    taintedMessage: "Are you sure you want to leave?",
+  });
 </script>
 
 <div
@@ -36,30 +39,54 @@
       </div>
       Account Creation
     </h1>
-    <form method="post" use:enhance class="text-start">
+    <form method="post" class="text-start" use:enhance>
       <label for="username" class="form-label lead">Username</label>
-      <input name="username" class="form-control" />
-      {#if form?.error?.username}
-        <p class="text-danger">{form?.error?.username[0]}</p>
+      <input
+        name="username"
+        class="form-control"
+        bind:value="{$form.username}"
+      />
+
+      {#if $errors.username}
+        <small class="text-danger">{$errors.username}</small>
+        <br />
       {/if}
+
       <label for="password" class="form-label lead mt-3">Password</label>
-      <input type="password" name="password" class="form-control" />
-      {#if form?.error?.password}
-        <p class="text-danger">{form?.error?.password[0]}</p>
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        bind:value="{$form.password}"
+      />
+
+      {#if $errors.password}
+        <small class="text-danger">{$errors.password}</small>
+        <br />
       {/if}
+
       <label for="passwordConfirm" class="form-label lead mt-3"
         >Re-Type Password</label
       >
-      <input type="password" name="passwordConfirm" class="form-control" />
-      {#if form?.error?.passwordConfirm}
-        <p class="text-danger">{form?.error?.passwordConfirm[0]}</p>
+      <input
+        type="password"
+        name="passwordConfirm"
+        class="form-control"
+        bind:value="{$form.passwordConfirm}"
+      />
+
+      {#if $errors.password}
+        <small class="text-danger">{$errors.passwordConfirm}</small>
+        <br />
       {/if}
-      {#if form?.message}
-        <p class="text-danger">{form.message}</p>
+      {#if $message}
+        <small class="text-danger">{$message}</small>
+        <br />
       {/if}
+
       <div class="text-center mt-4">
-        <input type="submit" class="btn btn-accent" />
-        <a href="/login" class="btn btn-primary">Sign In</a>
+        <input type="submit" class="btn btn-lg btn-accent" />
+        <a href="/" class="btn btn-lg btn-primary">Sign In</a>
       </div>
     </form>
   </div>

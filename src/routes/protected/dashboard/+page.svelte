@@ -6,6 +6,45 @@
   export let data: PageData;
 </script>
 
+<div class="container bg-light rounded mt-5">
+  <div class="row p-5 rounded">
+    <h1 class="display-3">Workouts</h1>
+
+    <ol class="list-group list-group-numbered">
+      {#each data.workouts as workout}
+        <li
+          class="rounded mb-2 list-group-item d-flex justify-content-between align-items-start bg-accent"
+        >
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">{workout.name}</div>
+            <small>{workout.weight} lbs</small>
+          </div>
+          <span class="badge bg-dark rounded-pill">{workout.calories} cals</span
+          >
+        </li>
+      {/each}
+    </ol>
+  </div>
+  <hr />
+  <div class="row p-5 rounded">
+    <h1 class="display-3">Meals</h1>
+
+    <ol class="list-group list-group-numbered">
+      {#each data.meals as meal}
+        <li
+          class="rounded mb-2 list-group-item d-flex justify-content-between align-items-start bg-primary"
+        >
+          <div class="ms-2 me-auto">
+            <div class="fw-bold">{meal.name}</div>
+            <small>{meal.time}</small>
+          </div>
+          <span class="badge bg-light rounded-pill">{meal.calories} cals</span>
+        </li>
+      {/each}
+    </ol>
+  </div>
+</div>
+
 <div
   class="container text-center d-flex justify-content-center p-5 my-5 bg-light rounded"
 >
@@ -31,8 +70,8 @@
     <p class="lead">User id: {data.userId}</p>
     <p class="lead">Username: {data.username}</p>
     <form method="post" action="?/logout" use:enhance>
-      <input type="submit" value="Sign out" class="btn btn-danger" />
-      <a href="/" class="btn btn-dark">Back</a>
+      <button type="submit" class="btn btn-lg btn-danger"> Sign Out</button>
+      <a href="/protected" class="btn btn-lg btn-dark">Back</a>
     </form>
   </div>
 </div>

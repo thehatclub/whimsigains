@@ -1,7 +1,13 @@
 <script lang="ts">
-  // import type { PageData } from "./$types";
+  import { superForm } from "sveltekit-superforms/client";
+  import type { PageData } from "./$types";
+  import { page } from "$app/stores";
 
-  // export let data: PageData;
+  export let data: PageData;
+
+  const { form, errors, enhance, message } = superForm(data.form, {
+    taintedMessage: "Are you sure you want to leave?",
+  });
 </script>
 
 <main class="text-light">
@@ -26,38 +32,76 @@
         Workouts
       </h1>
 
-      <a href="/" class="btn btn-dark">Back</a>
+      <a href="/protected" class="btn btn-lg btn-dark">Back</a>
     </div>
     <hr />
-    <form action="/logging" method="post">
+
+    {#if $message}
+      <div
+        class="alert"
+        class:alert-success="{$page.status == 200}"
+        class:alert-danger="{$page.status >= 400}"
+        role="alert"
+      >
+        {$message}
+      </div>
+    {/if}
+
+    <form method="post" use:enhance>
       <div class="mb-3">
         <label for="date" class="form-label">Enter Workout date:</label>
-        <input type="date" class="form-control" name="date" required />
+        <input
+          type="date"
+          class="form-control"
+          name="date"
+          bind:value="{$form.date}"
+        />
+        {#if $errors.date}
+          <small class="text-danger">{$errors.date}</small>
+          <br />
+        {/if}
       </div>
       <div class="mb-3">
         <label for="name" class="form-label">Enter Workout name:</label>
-        <input type="text" name="name" class="form-control" required />
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          bind:value="{$form.name}"
+        />
+        {#if $errors.name}
+          <small class="text-danger">{$errors.name}</small>
+          <br />
+        {/if}
       </div>
       <div class="mb-3">
         <label for="calories" class="form-label">Enter Calories Burned:</label>
-        <input type="number" class="form-control" required />
+        <input
+          type="number"
+          name="calories"
+          class="form-control"
+          bind:value="{$form.calories}"
+        />
+        {#if $errors.calories}
+          <small class="text-danger">{$errors.calories}</small>
+          <br />
+        {/if}
       </div>
       <div class="mb-3">
-        <label for="weight" class="form-label">Enter new weight PR:</label>
-        <input type="number" name="weight" class="form-control" required />
-      </div>
-      <div class="mb-3 row">
-        <div class="col-6">
-          <label for="sets" class="form-label">Enter sets:</label>
-          <input type="number" name="sets" class="form-control" required />
-        </div>
-        <div class="col-6">
-          <label for="reps" class="form-label">Enter reps:</label>
-          <input type="number" name="reps" class="form-control" required />
-        </div>
+        <label for="weight" class="form-label">Enter Weight:</label>
+        <input
+          type="number"
+          name="weight"
+          class="form-control"
+          bind:value="{$form.weight}"
+        />
+        {#if $errors.weight}
+          <small class="text-danger">{$errors.weight}</small>
+          <br />
+        {/if}
       </div>
       <div class="mb-3 text-center">
-        <button class="btn btn-lg btn-light" type="submit">Log Workout</button>
+        <input class="btn btn-lg btn-light" type="submit" />
       </div>
     </form>
   </div>

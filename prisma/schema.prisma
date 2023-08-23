@@ -14,38 +14,38 @@ datasource db {
 model User {
   id           String    @id @unique
   username     String    @unique
-  // calorieGoal  Int
-  // workouts     Workout[]
-  // meals        Meal[]
+  calorieGoal  Int       @default(2000)
+  workouts     Workout[]
+  meals        Meal[]
   auth_session Session[]
   key          Key[]
 }
 
-// model Workout {
-//   id       Int      @id @unique
-//   name     String
-//   calories Int
-//   weight   Float
-//   date     DateTime @default(now())
-//   User     User?    @relation(fields: [userId], references: [id])
-//   userId   String?
+model Workout {
+  id       String   @id @unique @default(uuid())
+  name     String
+  calories Int
+  weight   Float
+  date     DateTime @default(now())
+  User     User?    @relation(fields: [userId], references: [id])
+  userId   String?
 
-//   @@index([date])
-//   @@index([userId])
-// }
+  @@index([date])
+  @@index([userId])
+}
 
-// model Meal {
-//   id       Int      @id @unique
-//   name     String
-//   calories Int
-//   date     DateTime @default(now())
-//   time     String
-//   User     User?    @relation(fields: [userId], references: [id])
-//   userId   String?
+model Meal {
+  id       String   @id @unique @default(uuid())
+  name     String
+  calories Int
+  date     DateTime @default(now())
+  time     String
+  User     User?    @relation(fields: [userId], references: [id])
+  userId   String?
 
-//   @@index([date])
-//   @@index([userId])
-// }
+  @@index([date])
+  @@index([userId])
+}
 
 model Session {
   id             String @id @unique
