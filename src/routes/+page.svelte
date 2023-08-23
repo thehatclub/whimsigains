@@ -57,8 +57,10 @@
         <br />
       {/if}
       <div class="text-center mt-4">
-        <input type="submit" class="btn btn-lg btn-accent" />
-        <a href="/signup" class="btn btn-lg btn-primary">Create an Account</a>
+        <input type="submit" class="btn btn-lg btn-accent m-1" />
+        <a href="/signup" class="btn btn-lg btn-primary m-1"
+          >Create an Account</a
+        >
       </div>
     </form>
   </div>

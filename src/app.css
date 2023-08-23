@@ -62,6 +62,13 @@ h6 {
   border: var(--text) 2px solid !important;
   box-shadow: none;
 }
+.btn-input {
+  border: var(--text) 2px solid !important;
+}
+.btn-input:hover {
+  color: var(--text) !important;
+}
+
 a:link,
 a:visited,
 a:hover,
@@ -110,8 +117,8 @@ a:active {
 
 /* BUTTON HOVER SUDO CLASSES */
 .btn:hover {
-  color: var(--background) !important;
-  border: var(--text) 3px solid !important;
+  color: var(--background);
+  border: var(--text) 3px solid;
 }
 .btn-dark:hover {
   background: rgba(var(--rgba-background), 0.8) !important;

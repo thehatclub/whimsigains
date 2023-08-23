@@ -5,9 +5,7 @@
 
   export let data: PageData;
 
-  const { form, errors, enhance, message } = superForm(data.form, {
-    taintedMessage: "Are you sure you want to leave?",
-  });
+  const { form, errors, enhance, message } = superForm(data.form);
 </script>
 
 <main class="text-light">

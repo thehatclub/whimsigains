@@ -7,41 +7,93 @@
 </script>
 
 <div class="container bg-light rounded mt-5">
-  <div class="row p-5 rounded">
+  <div class="row p-5">
+    <h1 class="display-4">Calorie Goal: {data.calorieGoal} cal</h1>
+    <h1 class="display-4">
+      Remaining: {data.calorieGoal + data.calorieWorkout - data.calorieMeal} cal
+    </h1>
+  </div>
+</div>
+
+<div class="container bg-light rounded mt-5">
+  <div class="row p-5">
     <h1 class="display-3">Workouts</h1>
 
-    <ol class="list-group list-group-numbered">
-      {#each data.workouts as workout}
-        <li
-          class="rounded mb-2 list-group-item d-flex justify-content-between align-items-start bg-accent"
-        >
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">{workout.name}</div>
-            <small>{workout.weight} lbs</small>
+    {#if data.workouts.length != 0}
+      <ol class="list-group">
+        {#each data.workouts as workout}
+          <div class="row mb-2">
+            <li
+              class="rounded list-group-item d-flex justify-content-between align-items-start bg-accent"
+            >
+              <form method="post" action="?/delete" class="me-3">
+                <input type="hidden" name="inputId" value="{workout.id}" />
+                <input type="hidden" name="table" value="workout" />
+                <button type="submit" class="py-3 px-4 btn btn-danger btn-input"
+                  >X</button
+                >
+              </form>
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">{workout.name}</div>
+                <small>{workout.weight} lbs</small>
+              </div>
+              <span class="badge bg-dark rounded-pill"
+                >{workout.calories} cals</span
+              >
+            </li>
           </div>
-          <span class="badge bg-dark rounded-pill">{workout.calories} cals</span
-          >
-        </li>
-      {/each}
-    </ol>
+        {/each}
+      </ol>
+      <hr />
+      <p class="lead">
+        Total Calories burned: <mark>{data.calorieWorkout}</mark>
+      </p>
+    {:else}
+      <div class="text-center">
+        <p class="lead">You have no workouts logged</p>
+        <a class="btn btn-lg btn-light" href="/protected/workout">Log Now</a>
+      </div>
+    {/if}
   </div>
   <hr />
-  <div class="row p-5 rounded">
+  <div class="row p-5">
     <h1 class="display-3">Meals</h1>
 
-    <ol class="list-group list-group-numbered">
-      {#each data.meals as meal}
-        <li
-          class="rounded mb-2 list-group-item d-flex justify-content-between align-items-start bg-primary"
-        >
-          <div class="ms-2 me-auto">
-            <div class="fw-bold">{meal.name}</div>
-            <small>{meal.time}</small>
+    {#if data.meals.length != 0}
+      <ol class="list-group">
+        {#each data.meals as meal}
+          <div class="row mb-2">
+            <li
+              class="rounded list-group-item d-flex justify-content-between align-items-start bg-primary"
+            >
+              <form method="post" action="?/delete" class="me-3">
+                <input type="hidden" name="inputId" value="{meal.id}" />
+                <input type="hidden" name="table" value="meal" />
+                <button type="submit" class="py-3 px-4 btn btn-danger btn-input"
+                  >X</button
+                >
+              </form>
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">{meal.name}</div>
+                <small>{meal.time}</small>
+              </div>
+              <span class="badge bg-light rounded-pill"
+                >{meal.calories} cals</span
+              >
+            </li>
           </div>
-          <span class="badge bg-light rounded-pill">{meal.calories} cals</span>
-        </li>
-      {/each}
-    </ol>
+        {/each}
+      </ol>
+      <hr />
+      <p class="lead">
+        Total Calories consumed: <mark>{data.calorieMeal}</mark>
+      </p>
+    {:else}
+      <div class="text-center">
+        <p class="lead">You have no meals logged</p>
+        <a class="btn btn-lg btn-light" href="/protected/meals">Log Now</a>
+      </div>
+    {/if}
   </div>
 </div>
 
