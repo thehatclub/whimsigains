@@ -1,9 +1,8 @@
 import { auth } from "$lib/server/lucia";
 import { fail, redirect } from "@sveltejs/kit";
-import type { Actions, PageServerLoad } from "./$types";
 import { grabItem, deleteItem, calories } from "$lib/server/prisma";
 
-export const actions: Actions = {
+export const actions = {
   delete: async ({ locals, request }) => {
     const data = Object.fromEntries(await request.formData());
 
@@ -18,7 +17,7 @@ export const actions: Actions = {
   },
 };
 
-export const load: PageServerLoad = async ({ locals }) => {
+export async function load({ locals }) {
   try {
     const items = await grabItem(locals.user.userId);
     const calorieData = await calories(locals.user.userId);
@@ -34,4 +33,4 @@ export const load: PageServerLoad = async ({ locals }) => {
   } catch (e) {
     return fail(500);
   }
-};
+}

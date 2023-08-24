@@ -1,5 +1,4 @@
 import { message, superValidate } from "sveltekit-superforms/server";
-import type { Actions, PageServerLoad } from "./$types";
 import { z } from "zod";
 import { fail } from "@sveltejs/kit";
 import { client } from "$lib/server/lucia";
@@ -12,14 +11,14 @@ const mealSchema = z.object({
 });
 export type Meal = z.infer<typeof mealSchema>;
 
-export const load: PageServerLoad = async ({ locals, request }) => {
+export async function load({ locals, request }) {
   const form = await superValidate(request, mealSchema);
   return {
     form,
   };
-};
+}
 
-export const actions: Actions = {
+export const actions = {
   default: async ({ request, locals }) => {
     const form = await superValidate(request, mealSchema);
     if (!form.valid) {

@@ -4,14 +4,12 @@ import { fail, redirect } from "@sveltejs/kit";
 import { z } from "zod";
 import { message, setError, superValidate } from "sveltekit-superforms/server";
 
-import type { PageServerLoad, Actions } from "./$types";
-
 const loginSchema = z.object({
   username: z.string().min(1).max(31).trim(),
   password: z.string().min(1).max(255).trim(),
 });
 
-export const load: PageServerLoad = async ({ locals, request }) => {
+export async function load({ locals, request }) {
   if (await locals.auth.validate()) {
     throw redirect(302, "/protected");
   }
@@ -19,9 +17,9 @@ export const load: PageServerLoad = async ({ locals, request }) => {
   return {
     form,
   };
-};
+}
 
-export const actions: Actions = {
+export const actions = {
   default: async ({ request, locals }) => {
     const form = await superValidate(request, loginSchema);
     if (!form.valid) {

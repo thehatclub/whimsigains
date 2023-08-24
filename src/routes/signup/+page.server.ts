@@ -4,9 +4,7 @@ import { Prisma } from "@prisma/client";
 import { z } from "zod";
 import { message, setError, superValidate } from "sveltekit-superforms/server";
 
-import type { PageServerLoad, Actions } from "./$types";
-
-const loginSchema = z
+const signupSchema = z
   .object({
     username: z.string().min(4).max(31).trim(),
     password: z.string().min(6).max(255).trim(),
@@ -22,16 +20,16 @@ const loginSchema = z
     }
   });
 
-export const load: PageServerLoad = async (event) => {
-  const form = await superValidate(event, loginSchema);
+export async function load(event) {
+  const form = await superValidate(event, signupSchema);
   return {
     form,
   };
-};
+}
 
-export const actions: Actions = {
+export const actions = {
   default: async ({ request, locals }) => {
-    const form = await superValidate(request, loginSchema);
+    const form = await superValidate(request, signupSchema);
     if (!form.valid) {
       return fail(400, {
         form,

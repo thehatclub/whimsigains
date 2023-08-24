@@ -1,8 +1,7 @@
 <script lang="ts">
   import { superForm } from "sveltekit-superforms/client";
-  import type { PageData } from "./$types";
 
-  export let data: PageData;
+  export let data;
 
   const { form, errors, enhance, message } = superForm(data.form, {
     taintedMessage: "Are you sure you want to leave?",
