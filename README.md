@@ -1,55 +1,49 @@
-# Whimsigains - Calorie Tracker
+# <img src="./static/strong.svg" alt="drawing" width="50" /> Whimsigains
 
-![Whimsigains Logo](./static/strong.svg)
+Whimsigains is a workout and meal tracker web application built with SvelteKit and Bootstrap. It provides users with the ability to track their workouts, meals, and progress all in one place. The app features user authentication, calorie tracking, workout logging, and a responsive dashboard for a seamless experience.
 
-Welcome to Whimsigains, your all-in-one calorie tracker built with SvelteKit! Keep track of your workouts, meals, and progress effortlessly using this intuitive and sleek application.
+## Motivation
+
+Keeping track of workouts, meals, and fitness progress can be challenging. Whimsigains simplifies this process by offering a user-friendly platform to log and monitor your fitness journey conveniently.
 
 ## Features
 
-- Track your workouts, meals, and progress all in one place.
-- Visualize your calorie intake and burn with easy-to-understand charts.
-- Set personalized goals and monitor your fitness journey.
-- Responsive design for seamless use across devices.
+- **User Authentication**: Create an account or log in securely to access your personalized fitness tracking dashboard.
 
-## Screenshots
+- **Calorie Tracking**: Log your daily calorie intake, helping you manage your nutrition and diet effectively.
 
-![Dashboard](./_readme_stuff/homepage.jpg)
-_Dashboard displaying an overview of daily calories consumed and burned._
+- **Workout Logging**: Record your workouts, including exercises, sets, reps, and notes for each session.
 
-![Workout Tracking](./_readme_stuff/workouts.jpg)
-_Easily log your workouts and keep track of exercise details._
+- **Progress Monitoring**: Keep track of your fitness progress with visual charts and statistics.
 
-## Installation and Build Instructions
+- **Responsive Dashboard**: Enjoy a seamless experience on various devices with a responsive design.
 
-Follow these steps to get Whimsigains up and running locally:
+## Getting Started
 
-1. Clone the repository: `git clone https://github.com/thehatclub/whimsigains.git`
-2. Navigate to the project directory: `cd whimsigains`
-3. Install dependencies: `npm install`
-4. Build the project: `npm run build`
-5. Start the preview: `npm run preview`
+To get started with Whimsigains on your local machine, follow these steps:
 
-## Usage
+1. Clone the repository: `git clone https://github.com/yourusername/whimsigains.git`
 
-1. Sign up or log in to your Whimsigains account.
-2. Navigate through the intuitive interface to log your workouts and meals.
-3. Monitor your daily calorie intake and burn on the dashboard.
-4. Set and track your fitness goals to stay motivated.
+2. Install dependencies: `npm install`
 
-## Contributing
+3. Start the development server: `npm run dev`
 
-Contributions are welcome! If you'd like to contribute to Whimsigains, please follow these steps:
+## License
 
-1. Fork the repository.
-2. Create a new branch for your feature: `git checkout -b feature-name`
-3. Make your changes and commit them: `git commit -m "Add new feature"`
-4. Push to your forked repository: `git push origin feature-name`
-5. Open a pull request, describing your changes in detail.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
-## Feedback and Support
+## Acknowledgments
 
-If you encounter any issues or have suggestions for improvements, feel free to [open an issue](https://github.com/thehatclub/whimsigains/issues). We appreciate your feedback!
+We would like to express our gratitude to the fitness and open-source communities for their inspiration and support.
+
+## Contact
+
+If you have any questions, suggestions, or feedback, please don't hesitate to contact us:
+
+- GitHub Issues: [Whimsigains Issues](https://github.com/thehatclub/whimsigains/issues)
 
 ---
 
-Thank you for using Whimsigains! We hope this calorie tracker helps you achieve your fitness goals and maintain a healthier lifestyle.
+[![GitHub Stars](https://img.shields.io/github/stars/thehatclub/whimsigains.svg)](https://github.com/thehatclub/whimsigains/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/thehatclub/whimsigains.svg)](https://github.com/thehatclub/whimsigains/network)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
